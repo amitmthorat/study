@@ -440,3 +440,75 @@ Airline context
 - IATA Knowledge Hub, "What actually happens when a passenger's travel documents get checked". <https://www.iata.org/en/publications/newsletters/iata-knowledge-hub/what-actually-happens-when-a-passengers-travel-documents-get-checked/>
 - IATA CAWG, "Guidelines for collaboratively improving API data quality", 2021. <https://www.iata.org/contentassets/67e015cf3db1410392cd5b5bb5961a16/iata-cawg-guidelines-for-collaboratively-improving-api-dq_2021.pdf>
 - Passenger Terminal Today on common APIS errors. <https://www.passengerterminaltoday.com/?p=21069>
+
+---
+
+## 13. How commercial vendors (Regula, Smart Engines, Microblink) reach near-100%
+
+None of these vendors publish a mobile MRZ accuracy benchmark with methodology. What they
+do publish, in product pages, release notes, patents and papers, shows that the result
+comes from a stack of decisions around the OCR model, not from a better OCR model alone.
+
+1. **Document identification before reading.** Regula matches the capture against a
+   template database (14,000 templates in 2024, 17,000+ by 2026, from around 250
+   countries). Once the document is identified, the MRZ location, the OCR-B variant,
+   the visual-zone layout and the expected field formats are all known. Detection
+   becomes verification of a known layout, which is far easier than open search.
+2. **Cross-zone verification.** Regula reads the visual inspection zone (VIZ) with
+   template-guided OCR and compares it field by field with the MRZ, reporting
+   mismatches. Microblink does the same across barcode, MRZ and VIZ, with a stated
+   preference order of barcode, then MRZ, then VIZ. Two independent reads of document
+   number, date of birth and expiry agreeing is what pushes residual error toward zero.
+3. **Interframe integration and anytime algorithms.** Smart Engines names "computational
+   geometry, anytime algorithms and interframe integration" as the key components of
+   MRZ recognition in a video stream. Microblink markets "multi-frame analysis". This is
+   the weighted per-character voting and stopping rule described in sections 6 and 7.
+4. **Small proprietary models trained on real documents.** Smart Engines reports 8-bit
+   and 4-bit integer networks and an MRZ detector running in 16 ms on an iPhone SE 2020.
+   Regula is a forensic-equipment company with physical document collections, so its
+   training and regression sets are real documents across issuers, print runs and
+   wear, not just synthetic renders. The data is the moat more than the architecture.
+5. **Per-issuer parsers and font handling.** Regula release notes repeatedly list
+   "updated country parsers", "improved reading of MRZ printed with non-standard
+   fonts" and fixes for check-digit handling. Years of issuer-specific quirks are
+   encoded in the parser layer.
+6. **Reject rather than guess.** Results are validated against ICAO 9303 and ISO 18013
+   and returned with status flags. A read that cannot be verified is reported as such
+   instead of returned as data. The "almost 100%" figure is accuracy on accepted reads;
+   the reject rate is not published.
+7. **Capture quality control and UX.** Blur detection, glare handling, document-in-frame
+   guidance and auto-capture mean the recognizer mostly sees frames worth reading.
+8. **Hardware context.** Regula's strongest accuracy claims are for desktop readers with
+   fixed optics and controlled white, infrared and ultraviolet lighting. Mobile is the
+   harder problem, and the one public mobile-ish data point is Dynamsoft's own
+   MIDV-2020 photographed-passport result going from 71% to about 95% between builds.
+
+Gap checklist for an existing scanner that is "not great":
+
+- Generic OCR (ML Kit, Tesseract) instead of a 37-class MRZ recognizer.
+- Single-frame decisions instead of weighted multi-frame integration.
+- No rectification before recognition.
+- No per-position probabilities, so no field-aware confusable correction.
+- Stops on the first checksum pass, or has no stopping rule.
+- No cross-check against the VIZ.
+- No capture-quality gate, so blurred and glared frames reach the recognizer.
+- Analysis resolution silently lowered by CameraX use-case binding.
+- No per-issuer regression corpus, so fixes regress.
+
+Additional sources for this section
+
+- Regula Document Reader SDK product page (ICAO 9303 and ISO 18013 validation, 17,000+ templates). <https://regulaforensics.com/products/document-reader-sdk/>
+- Regula, "MRZ Verification: Its Role in ID Verification" (combine MRZ with VIZ, barcode, chip checks). <https://regulaforensics.com/blog/machine-readable-zone/>
+- Regula, document type identification technology. <https://regulaforensics.com/explore/technologies/document-type-identification/>
+- Regula template database expansion to 14,000 (2024). <https://regulaforensics.com/news/regula-expands-worlds-largest-id-template-database/>
+- Regula Document Reader SDK release notes 7.5 (non-standard MRZ fonts, country parsers). <https://docs.regulaforensics.com/develop/doc-reader-sdk/release-notes/7-5/>
+- Regula Document Reader SDK release notes 8.3 (quick MRZ processing in video mode). <https://docs.regulaforensics.com/develop/doc-reader-sdk/release-notes/8-3/>
+- Smart Engines MRZ Scanning SDK (interframe integration, anytime algorithms, 8-bit networks). <https://smartengines.com/ocr-engines/code-engine/mrz-reader/>
+- Smart Engines 2023 scientific activity report (16 ms MRZ detection). <https://smartengines.com/news-events/smart-engines-reported-on-the-scientific-activity-in-the-ai-field-in-2023/>
+- Smart ID Engine technical reference (integer pipeline, 8-bit and 4-bit networks). <https://smartengines.com/wp-content/uploads/2021/04/smart-id-engine-datasheet-eng.pdf>
+- Smart Engines, data augmentation for printed character recognition. <https://smartengines.medium.com/data-augmentation-for-neural-network-training-example-for-printed-characters-recognition-8e273bbb6c66>
+- Microblink BlinkID product page (multi-frame analysis, cross-zone checks). <https://microblink.com/en/products/blinkID>
+- Microblink, "The Nuts and Bolts of the BlinkID v5" (ML pipeline, blur detection). <https://microblink.com/resources/blog/the-nuts-and-bolts-of-the-blinkid-v5/>
+- BlinkID Android SDK (barcode, MRZ, VIZ preference order; 1080p preview). <https://github.com/microblink/blinkid-android>
+- Dynamsoft, "Unlock Faster, More Accurate ID Verification with the Dynamsoft MRZ SDK". <https://www.dynamsoft.com/blog/insights/passport-id-mrz-sdk-accuracy>
+- Scanbot, "How to scan passports with a mobile device". <https://scanbot.io/blog/how-to-scan-passports/>
