@@ -1,0 +1,287 @@
+public final class com/airline/mrz/engine/Detection {
+	public fun <init> (Lcom/airline/mrz/engine/Quad;F)V
+	public final fun component1 ()Lcom/airline/mrz/engine/Quad;
+	public final fun component2 ()F
+	public final fun copy (Lcom/airline/mrz/engine/Quad;F)Lcom/airline/mrz/engine/Detection;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/Detection;Lcom/airline/mrz/engine/Quad;FILjava/lang/Object;)Lcom/airline/mrz/engine/Detection;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBand ()Lcom/airline/mrz/engine/Quad;
+	public final fun getConfidence ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/Frame {
+	public fun <init> (Lcom/airline/mrz/engine/image/LumaImage;IJ)V
+	public final fun getLuma ()Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun getRotationDegrees ()I
+	public final fun getTimestampNanos ()J
+}
+
+public final class com/airline/mrz/engine/Hint : java/lang/Enum {
+	public static final field AVOID_GLARE Lcom/airline/mrz/engine/Hint;
+	public static final field FIT_WHOLE_PASSPORT Lcom/airline/mrz/engine/Hint;
+	public static final field FLATTEN_PAGE Lcom/airline/mrz/engine/Hint;
+	public static final field HOLD_FLAT Lcom/airline/mrz/engine/Hint;
+	public static final field HOLD_PARALLEL Lcom/airline/mrz/engine/Hint;
+	public static final field HOLD_STILL Lcom/airline/mrz/engine/Hint;
+	public static final field MORE_LIGHT Lcom/airline/mrz/engine/Hint;
+	public static final field MOVE_CLOSER Lcom/airline/mrz/engine/Hint;
+	public static final field NO_MRZ Lcom/airline/mrz/engine/Hint;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/engine/Hint;
+	public static fun values ()[Lcom/airline/mrz/engine/Hint;
+}
+
+public abstract interface class com/airline/mrz/engine/MrzDetector : java/io/Closeable {
+	public abstract fun detect (Lcom/airline/mrz/engine/image/LumaImage;)Lcom/airline/mrz/engine/Detection;
+	public abstract fun getInputLongSide ()I
+}
+
+public abstract interface class com/airline/mrz/engine/MrzEngine : java/io/Closeable {
+	public abstract fun close ()V
+	public abstract fun getDetector ()Lcom/airline/mrz/engine/MrzDetector;
+	public abstract fun getModelVersion ()Ljava/lang/String;
+	public abstract fun getRecognizer ()Lcom/airline/mrz/engine/MrzRecognizer;
+	public abstract fun getRectifier ()Lcom/airline/mrz/engine/image/Rectifier;
+	public abstract fun getVizReader ()Lcom/airline/mrz/engine/VizReader;
+}
+
+public final class com/airline/mrz/engine/MrzEngine$DefaultImpls {
+	public static fun close (Lcom/airline/mrz/engine/MrzEngine;)V
+}
+
+public abstract interface class com/airline/mrz/engine/MrzRecognizer : java/io/Closeable {
+	public abstract fun getCellWidth ()I
+	public abstract fun getLineHeight ()I
+	public abstract fun recognize (Ljava/util/List;FLjava/util/List;)Ljava/util/List;
+}
+
+public final class com/airline/mrz/engine/PointF {
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lcom/airline/mrz/engine/PointF;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/PointF;FFILjava/lang/Object;)Lcom/airline/mrz/engine/PointF;
+	public final fun distanceTo (Lcom/airline/mrz/engine/PointF;)F
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getX ()F
+	public final fun getY ()F
+	public fun hashCode ()I
+	public final fun scaled (FF)Lcom/airline/mrz/engine/PointF;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/Quad {
+	public static final field Companion Lcom/airline/mrz/engine/Quad$Companion;
+	public fun <init> (Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;)V
+	public final fun component1 ()Lcom/airline/mrz/engine/PointF;
+	public final fun component2 ()Lcom/airline/mrz/engine/PointF;
+	public final fun component3 ()Lcom/airline/mrz/engine/PointF;
+	public final fun component4 ()Lcom/airline/mrz/engine/PointF;
+	public final fun copy (Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;)Lcom/airline/mrz/engine/Quad;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/Quad;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;Lcom/airline/mrz/engine/PointF;ILjava/lang/Object;)Lcom/airline/mrz/engine/Quad;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBottomLeft ()Lcom/airline/mrz/engine/PointF;
+	public final fun getBottomRight ()Lcom/airline/mrz/engine/PointF;
+	public final fun getCorners ()Ljava/util/List;
+	public final fun getHeight ()F
+	public final fun getPerspectiveRatio ()F
+	public final fun getTiltDegrees ()F
+	public final fun getTopLeft ()Lcom/airline/mrz/engine/PointF;
+	public final fun getTopRight ()Lcom/airline/mrz/engine/PointF;
+	public final fun getWidth ()F
+	public fun hashCode ()I
+	public final fun maxX ()F
+	public final fun maxY ()F
+	public final fun minX ()F
+	public final fun minY ()F
+	public final fun scaled (FF)Lcom/airline/mrz/engine/Quad;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/Quad$Companion {
+	public final fun ofRect (FFFF)Lcom/airline/mrz/engine/Quad;
+}
+
+public final class com/airline/mrz/engine/QualityGate {
+	public fun <init> ()V
+	public fun <init> (Lcom/airline/mrz/engine/QualityGate$Thresholds;)V
+	public synthetic fun <init> (Lcom/airline/mrz/engine/QualityGate$Thresholds;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun evaluate (Lcom/airline/mrz/engine/image/QualityMetrics;Z)Lcom/airline/mrz/engine/QualityGate$Decision;
+	public static synthetic fun evaluate$default (Lcom/airline/mrz/engine/QualityGate;Lcom/airline/mrz/engine/image/QualityMetrics;ZILjava/lang/Object;)Lcom/airline/mrz/engine/QualityGate$Decision;
+	public final fun getThresholds ()Lcom/airline/mrz/engine/QualityGate$Thresholds;
+}
+
+public abstract interface class com/airline/mrz/engine/QualityGate$Decision {
+}
+
+public final class com/airline/mrz/engine/QualityGate$Decision$Accept : com/airline/mrz/engine/QualityGate$Decision {
+	public fun <init> (F)V
+	public final fun component1 ()F
+	public final fun copy (F)Lcom/airline/mrz/engine/QualityGate$Decision$Accept;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/QualityGate$Decision$Accept;FILjava/lang/Object;)Lcom/airline/mrz/engine/QualityGate$Decision$Accept;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrameWeight ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/QualityGate$Decision$Reject : com/airline/mrz/engine/QualityGate$Decision {
+	public fun <init> (Lcom/airline/mrz/engine/Hint;)V
+	public final fun component1 ()Lcom/airline/mrz/engine/Hint;
+	public final fun copy (Lcom/airline/mrz/engine/Hint;)Lcom/airline/mrz/engine/QualityGate$Decision$Reject;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/QualityGate$Decision$Reject;Lcom/airline/mrz/engine/Hint;ILjava/lang/Object;)Lcom/airline/mrz/engine/QualityGate$Decision$Reject;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHint ()Lcom/airline/mrz/engine/Hint;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/QualityGate$Thresholds {
+	public fun <init> ()V
+	public fun <init> (FFFFFLkotlin/ranges/ClosedFloatingPointRange;FIF)V
+	public synthetic fun <init> (FFFFFLkotlin/ranges/ClosedFloatingPointRange;FIFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun component5 ()F
+	public final fun component6 ()Lkotlin/ranges/ClosedFloatingPointRange;
+	public final fun component7 ()F
+	public final fun component8 ()I
+	public final fun component9 ()F
+	public final fun copy (FFFFFLkotlin/ranges/ClosedFloatingPointRange;FIF)Lcom/airline/mrz/engine/QualityGate$Thresholds;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/QualityGate$Thresholds;FFFFFLkotlin/ranges/ClosedFloatingPointRange;FIFILjava/lang/Object;)Lcom/airline/mrz/engine/QualityGate$Thresholds;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMaxCurlPer100Px ()F
+	public final fun getMaxGlareFraction ()F
+	public final fun getMaxTiltDegrees ()F
+	public final fun getMinBandHeightPx ()F
+	public final fun getMinContrast ()I
+	public final fun getMinSharpness ()F
+	public final fun getPerspectiveRatioRange ()Lkotlin/ranges/ClosedFloatingPointRange;
+	public final fun getSharpnessScale ()F
+	public final fun getStrictSharpnessMultiplier ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/VizFields {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/airline/mrz/engine/VizFields;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/VizFields;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/engine/VizFields;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDateOfBirth ()Ljava/lang/String;
+	public final fun getDateOfExpiry ()Ljava/lang/String;
+	public final fun getDocumentNumber ()Ljava/lang/String;
+	public final fun getReadFields ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/airline/mrz/engine/VizReader : java/io/Closeable {
+	public abstract fun read (Lcom/airline/mrz/engine/image/LumaImage;Lcom/airline/mrz/engine/Quad;Ljava/lang/String;)Lcom/airline/mrz/engine/VizFields;
+}
+
+public final class com/airline/mrz/engine/image/Downscaler {
+	public static final field INSTANCE Lcom/airline/mrz/engine/image/Downscaler;
+	public final fun downscale (Lcom/airline/mrz/engine/image/LumaImage;I)Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun factorFor (III)I
+}
+
+public final class com/airline/mrz/engine/image/Homography {
+	public static final field Companion Lcom/airline/mrz/engine/image/Homography$Companion;
+	public fun <init> ([D)V
+	public final fun map (FF)Lcom/airline/mrz/engine/PointF;
+	public final fun toArray ()[D
+}
+
+public final class com/airline/mrz/engine/image/Homography$Companion {
+	public final fun fromRectToQuad (FFLcom/airline/mrz/engine/Quad;)Lcom/airline/mrz/engine/image/Homography;
+	public final fun solve (Ljava/util/List;Ljava/util/List;)Lcom/airline/mrz/engine/image/Homography;
+}
+
+public final class com/airline/mrz/engine/image/LumaImage {
+	public static final field Companion Lcom/airline/mrz/engine/image/LumaImage$Companion;
+	public fun <init> ([BIIII)V
+	public synthetic fun <init> ([BIIIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun copy ()Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun crop (IIII)Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun get (II)I
+	public final fun getData ()[B
+	public final fun getHeight ()I
+	public final fun getOffset ()I
+	public final fun getRowStride ()I
+	public final fun getWidth ()I
+	public final fun sampleBilinear (FF)F
+	public final fun zero ()V
+}
+
+public final class com/airline/mrz/engine/image/LumaImage$Companion {
+	public final fun blank (III)Lcom/airline/mrz/engine/image/LumaImage;
+	public static synthetic fun blank$default (Lcom/airline/mrz/engine/image/LumaImage$Companion;IIIILjava/lang/Object;)Lcom/airline/mrz/engine/image/LumaImage;
+}
+
+public final class com/airline/mrz/engine/image/Quality {
+	public static final field INSTANCE Lcom/airline/mrz/engine/image/Quality;
+	public final fun baselineCurl (Lcom/airline/mrz/engine/image/LumaImage;I)F
+	public static synthetic fun baselineCurl$default (Lcom/airline/mrz/engine/image/Quality;Lcom/airline/mrz/engine/image/LumaImage;IILjava/lang/Object;)F
+	public final fun cellWeights (Lcom/airline/mrz/engine/image/LumaImage;II)[F
+	public final fun contrast (Lcom/airline/mrz/engine/image/LumaImage;)I
+	public final fun glareFraction (Lcom/airline/mrz/engine/image/LumaImage;II)F
+	public static synthetic fun glareFraction$default (Lcom/airline/mrz/engine/image/Quality;Lcom/airline/mrz/engine/image/LumaImage;IIILjava/lang/Object;)F
+	public final fun laplacianVariance (Lcom/airline/mrz/engine/image/LumaImage;)F
+	public final fun measure (IILcom/airline/mrz/engine/Quad;FLcom/airline/mrz/engine/image/Rectifier$RectifiedLines;I)Lcom/airline/mrz/engine/image/QualityMetrics;
+	public static synthetic fun measure$default (Lcom/airline/mrz/engine/image/Quality;IILcom/airline/mrz/engine/Quad;FLcom/airline/mrz/engine/image/Rectifier$RectifiedLines;IILjava/lang/Object;)Lcom/airline/mrz/engine/image/QualityMetrics;
+}
+
+public final class com/airline/mrz/engine/image/QualityMetrics {
+	public fun <init> (FFIFZFFFF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()I
+	public final fun component4 ()F
+	public final fun component5 ()Z
+	public final fun component6 ()F
+	public final fun component7 ()F
+	public final fun component8 ()F
+	public final fun component9 ()F
+	public final fun copy (FFIFZFFFF)Lcom/airline/mrz/engine/image/QualityMetrics;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/image/QualityMetrics;FFIFZFFFFILjava/lang/Object;)Lcom/airline/mrz/engine/image/QualityMetrics;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun frameWeight (F)F
+	public final fun getBandHeightPx ()F
+	public final fun getContrast ()I
+	public final fun getCurlPer100Px ()F
+	public final fun getDetectorConfidence ()F
+	public final fun getGlareFraction ()F
+	public final fun getPerspectiveRatio ()F
+	public final fun getSharpness ()F
+	public final fun getTiltDegrees ()F
+	public final fun getTouchesEdge ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/image/Rectifier {
+	public fun <init> ()V
+	public fun <init> (III)V
+	public synthetic fun <init> (IIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun cellBounds (I)Lkotlin/ranges/IntRange;
+	public final fun getCellWidth ()I
+	public final fun getLineHeight ()I
+	public final fun getLineWidth ()I
+	public final fun rectify (Lcom/airline/mrz/engine/image/LumaImage;Lcom/airline/mrz/engine/Quad;)Lcom/airline/mrz/engine/image/Rectifier$RectifiedLines;
+}
+
+public final class com/airline/mrz/engine/image/Rectifier$RectifiedLines {
+	public fun <init> (Lcom/airline/mrz/engine/image/LumaImage;Lcom/airline/mrz/engine/image/LumaImage;Lcom/airline/mrz/engine/image/LumaImage;)V
+	public final fun getBand ()Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun getLine1 ()Lcom/airline/mrz/engine/image/LumaImage;
+	public final fun getLine2 ()Lcom/airline/mrz/engine/image/LumaImage;
+}
+

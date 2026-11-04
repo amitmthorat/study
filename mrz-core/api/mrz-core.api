@@ -1,0 +1,670 @@
+public final class com/airline/mrz/core/integrate/FrameIntegrator {
+	public fun <init> ()V
+	public fun <init> (IFIFI)V
+	public synthetic fun <init> (IFIFIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun add (Lcom/airline/mrz/core/recognize/FrameHypothesis;)Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult;
+	public final fun expectedChangeBound ()F
+	public final fun integrated ()Lcom/airline/mrz/core/integrate/FrameIntegrator$Integrated;
+	public final fun isEmpty ()Z
+	public final fun reset ()V
+}
+
+public abstract interface class com/airline/mrz/core/integrate/FrameIntegrator$AddResult {
+}
+
+public final class com/airline/mrz/core/integrate/FrameIntegrator$AddResult$Rejected : com/airline/mrz/core/integrate/FrameIntegrator$AddResult {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult$Rejected;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult$Rejected;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult$Rejected;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/integrate/FrameIntegrator$AddResult$ResetAndVoted : com/airline/mrz/core/integrate/FrameIntegrator$AddResult {
+	public static final field INSTANCE Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult$ResetAndVoted;
+}
+
+public final class com/airline/mrz/core/integrate/FrameIntegrator$AddResult$Voted : com/airline/mrz/core/integrate/FrameIntegrator$AddResult {
+	public static final field INSTANCE Lcom/airline/mrz/core/integrate/FrameIntegrator$AddResult$Voted;
+}
+
+public final class com/airline/mrz/core/integrate/FrameIntegrator$Integrated {
+	public fun <init> (Ljava/util/List;Ljava/util/List;IIF)V
+	public final fun getFramesContributing ()I
+	public final fun getFramesVoted ()I
+	public final fun getLine1 ()Ljava/util/List;
+	public final fun getLine2 ()Ljava/util/List;
+	public final fun getMinMargin ()F
+	public final fun getRawLines ()Ljava/util/List;
+	public final fun getTotalWeight ()F
+}
+
+public final class com/airline/mrz/core/integrate/ReadSession {
+	public fun <init> ()V
+	public fun <init> (Lcom/airline/mrz/core/integrate/FrameIntegrator;Lcom/airline/mrz/core/integrate/StoppingRule;)V
+	public synthetic fun <init> (Lcom/airline/mrz/core/integrate/FrameIntegrator;Lcom/airline/mrz/core/integrate/StoppingRule;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun integrated ()Lcom/airline/mrz/core/integrate/FrameIntegrator$Integrated;
+	public final fun onFrame (Lcom/airline/mrz/core/recognize/FrameHypothesis;Lcom/airline/mrz/core/result/VizCrossCheck;J)Lkotlin/Pair;
+	public final fun onTick (Lcom/airline/mrz/core/result/VizCrossCheck;J)Lcom/airline/mrz/core/integrate/StoppingRule$Decision;
+	public final fun reset ()V
+}
+
+public final class com/airline/mrz/core/integrate/StabilityTracker {
+	public fun <init> ()V
+	public final fun getConsecutive ()I
+	public final fun observe (Ljava/lang/Object;)I
+	public final fun reset ()V
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule {
+	public fun <init> ()V
+	public fun <init> (Lcom/airline/mrz/core/integrate/StoppingRule$Config;Lcom/airline/mrz/core/parse/Td3Parser;Lcom/airline/mrz/core/recognize/FieldAwareCorrector;)V
+	public synthetic fun <init> (Lcom/airline/mrz/core/integrate/StoppingRule$Config;Lcom/airline/mrz/core/parse/Td3Parser;Lcom/airline/mrz/core/recognize/FieldAwareCorrector;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun evaluate (Lcom/airline/mrz/core/integrate/StoppingRule$Observation;)Lcom/airline/mrz/core/integrate/StoppingRule$Decision;
+	public final fun reset ()V
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule$Config {
+	public fun <init> ()V
+	public fun <init> (IFIJZFI)V
+	public synthetic fun <init> (IFIJZFIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()F
+	public final fun component3 ()I
+	public final fun component4 ()J
+	public final fun component5 ()Z
+	public final fun component6 ()F
+	public final fun component7 ()I
+	public final fun copy (IFIJZFI)Lcom/airline/mrz/core/integrate/StoppingRule$Config;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/StoppingRule$Config;IFIJZFIILjava/lang/Object;)Lcom/airline/mrz/core/integrate/StoppingRule$Config;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowUnverifiedResult ()Z
+	public final fun getEarlyStopChangeBound ()F
+	public final fun getMinFrames ()I
+	public final fun getMinMargin ()F
+	public final fun getStableFrames ()I
+	public final fun getTimeoutMs ()J
+	public final fun getVizMismatchPatience ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/airline/mrz/core/integrate/StoppingRule$Decision {
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule$Decision$Continue : com/airline/mrz/core/integrate/StoppingRule$Decision {
+	public fun <init> (Lcom/airline/mrz/core/integrate/StoppingRule$Progress;)V
+	public final fun component1 ()Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public final fun copy (Lcom/airline/mrz/core/integrate/StoppingRule$Progress;)Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Continue;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Continue;Lcom/airline/mrz/core/integrate/StoppingRule$Progress;ILjava/lang/Object;)Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Continue;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getProgress ()Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule$Decision$Stop : com/airline/mrz/core/integrate/StoppingRule$Decision {
+	public fun <init> (Lcom/airline/mrz/core/result/MrzReadOutcome;)V
+	public final fun component1 ()Lcom/airline/mrz/core/result/MrzReadOutcome;
+	public final fun copy (Lcom/airline/mrz/core/result/MrzReadOutcome;)Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Stop;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Stop;Lcom/airline/mrz/core/result/MrzReadOutcome;ILjava/lang/Object;)Lcom/airline/mrz/core/integrate/StoppingRule$Decision$Stop;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOutcome ()Lcom/airline/mrz/core/result/MrzReadOutcome;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule$Observation {
+	public fun <init> (Lcom/airline/mrz/core/integrate/FrameIntegrator;Lcom/airline/mrz/core/result/VizCrossCheck;J)V
+	public final fun component1 ()Lcom/airline/mrz/core/integrate/FrameIntegrator;
+	public final fun component2 ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public final fun component3 ()J
+	public final fun copy (Lcom/airline/mrz/core/integrate/FrameIntegrator;Lcom/airline/mrz/core/result/VizCrossCheck;J)Lcom/airline/mrz/core/integrate/StoppingRule$Observation;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/StoppingRule$Observation;Lcom/airline/mrz/core/integrate/FrameIntegrator;Lcom/airline/mrz/core/result/VizCrossCheck;JILjava/lang/Object;)Lcom/airline/mrz/core/integrate/StoppingRule$Observation;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getElapsedMs ()J
+	public final fun getIntegrator ()Lcom/airline/mrz/core/integrate/FrameIntegrator;
+	public final fun getViz ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRule$Progress {
+	public fun <init> (IIZFLcom/airline/mrz/core/result/VizCrossCheck;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()Z
+	public final fun component4 ()F
+	public final fun component5 ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public final fun copy (IIZFLcom/airline/mrz/core/result/VizCrossCheck;)Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/integrate/StoppingRule$Progress;IIZFLcom/airline/mrz/core/result/VizCrossCheck;ILjava/lang/Object;)Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChecksPassing ()Z
+	public final fun getFramesVoted ()I
+	public final fun getMinMargin ()F
+	public final fun getStableFrames ()I
+	public final fun getVizState ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/integrate/StoppingRuleKt {
+	public static final fun getVIZ_CROSS_CHECK_FIELDS ()Ljava/util/Set;
+}
+
+public final class com/airline/mrz/core/model/CheckDigitKind : java/lang/Enum {
+	public static final field COMPOSITE Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static final field DATE_OF_BIRTH Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static final field DATE_OF_EXPIRY Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static final field DOCUMENT_NUMBER Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static final field OPTIONAL_DATA Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/core/model/CheckDigitKind;
+	public static fun values ()[Lcom/airline/mrz/core/model/CheckDigitKind;
+}
+
+public final class com/airline/mrz/core/model/CheckStatus : java/lang/Enum {
+	public static final field FAIL Lcom/airline/mrz/core/model/CheckStatus;
+	public static final field NOT_PRESENT Lcom/airline/mrz/core/model/CheckStatus;
+	public static final field PASS Lcom/airline/mrz/core/model/CheckStatus;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/core/model/CheckStatus;
+	public static fun values ()[Lcom/airline/mrz/core/model/CheckStatus;
+}
+
+public final class com/airline/mrz/core/model/CountryCodes {
+	public static final field INSTANCE Lcom/airline/mrz/core/model/CountryCodes;
+	public final fun canonical (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getALL ()Ljava/util/Set;
+	public final fun getICAO_SPECIAL ()Ljava/util/Set;
+	public final fun getISO_3166_ALPHA3 ()Ljava/util/Set;
+	public final fun isValid (Ljava/lang/String;)Z
+}
+
+public final class com/airline/mrz/core/model/Field : java/lang/Enum {
+	public static final field DATE_OF_BIRTH Lcom/airline/mrz/core/model/Field;
+	public static final field DATE_OF_EXPIRY Lcom/airline/mrz/core/model/Field;
+	public static final field DOCUMENT_CODE Lcom/airline/mrz/core/model/Field;
+	public static final field DOCUMENT_NUMBER Lcom/airline/mrz/core/model/Field;
+	public static final field ISSUING_STATE Lcom/airline/mrz/core/model/Field;
+	public static final field NAMES Lcom/airline/mrz/core/model/Field;
+	public static final field NATIONALITY Lcom/airline/mrz/core/model/Field;
+	public static final field OPTIONAL_DATA Lcom/airline/mrz/core/model/Field;
+	public static final field SEX Lcom/airline/mrz/core/model/Field;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/core/model/Field;
+	public static fun values ()[Lcom/airline/mrz/core/model/Field;
+}
+
+public final class com/airline/mrz/core/model/MrzAlphabet {
+	public static final field FILLER C
+	public static final field FILLER_INDEX I
+	public static final field INSTANCE Lcom/airline/mrz/core/model/MrzAlphabet;
+	public static final field SIZE I
+	public static final field SYMBOLS Ljava/lang/String;
+	public final fun charAt (I)C
+	public final fun checkValue (C)I
+	public final fun getALL ()Ljava/util/Set;
+	public final fun getDIGITS ()Ljava/util/Set;
+	public final fun getDIGITS_OR_FILLER ()Ljava/util/Set;
+	public final fun getLETTERS ()Ljava/util/Set;
+	public final fun getLETTERS_OR_FILLER ()Ljava/util/Set;
+	public final fun indexOf (C)I
+	public final fun isValid (C)Z
+}
+
+public final class com/airline/mrz/core/model/PassportData {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Ljava/time/LocalDate;Lcom/airline/mrz/core/model/Sex;Ljava/time/LocalDate;Ljava/lang/String;Ljava/util/Map;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/time/LocalDate;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/time/LocalDate;
+	public final fun component9 ()Lcom/airline/mrz/core/model/Sex;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Ljava/time/LocalDate;Lcom/airline/mrz/core/model/Sex;Ljava/time/LocalDate;Ljava/lang/String;Ljava/util/Map;)Lcom/airline/mrz/core/model/PassportData;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/model/PassportData;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Ljava/time/LocalDate;Lcom/airline/mrz/core/model/Sex;Ljava/time/LocalDate;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/airline/mrz/core/model/PassportData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDateOfBirth ()Ljava/time/LocalDate;
+	public final fun getDateOfExpiry ()Ljava/time/LocalDate;
+	public final fun getDocumentCode ()Ljava/lang/String;
+	public final fun getDocumentNumber ()Ljava/lang/String;
+	public final fun getDocumentSubtype ()C
+	public final fun getFieldConfidence ()Ljava/util/Map;
+	public final fun getIssuingState ()Ljava/lang/String;
+	public final fun getIssuingStateCanonical ()Ljava/lang/String;
+	public final fun getNameTruncated ()Z
+	public final fun getNationality ()Ljava/lang/String;
+	public final fun getNationalityCanonical ()Ljava/lang/String;
+	public final fun getOptionalData ()Ljava/lang/String;
+	public final fun getPrimaryIdentifier ()Ljava/lang/String;
+	public final fun getSecondaryIdentifier ()Ljava/lang/String;
+	public final fun getSex ()Lcom/airline/mrz/core/model/Sex;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/model/Position {
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Lcom/airline/mrz/core/model/Position;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/model/Position;IIILjava/lang/Object;)Lcom/airline/mrz/core/model/Position;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFlat ()I
+	public final fun getIndex ()I
+	public final fun getLine ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/model/Sex : java/lang/Enum {
+	public static final field FEMALE Lcom/airline/mrz/core/model/Sex;
+	public static final field MALE Lcom/airline/mrz/core/model/Sex;
+	public static final field UNSPECIFIED Lcom/airline/mrz/core/model/Sex;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/core/model/Sex;
+	public static fun values ()[Lcom/airline/mrz/core/model/Sex;
+}
+
+public final class com/airline/mrz/core/model/Span {
+	public fun <init> (IIILjava/util/Set;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()Ljava/util/Set;
+	public final fun copy (IIILjava/util/Set;)Lcom/airline/mrz/core/model/Span;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/model/Span;IIILjava/util/Set;ILjava/lang/Object;)Lcom/airline/mrz/core/model/Span;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun extract (Ljava/util/List;)Ljava/lang/String;
+	public final fun getAlphabet ()Ljava/util/Set;
+	public final fun getEnd ()I
+	public final fun getLength ()I
+	public final fun getLine ()I
+	public final fun getStart ()I
+	public fun hashCode ()I
+	public final fun positions ()Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/model/Td3Layout {
+	public static final field INSTANCE Lcom/airline/mrz/core/model/Td3Layout;
+	public static final field LINE_COUNT I
+	public static final field LINE_LENGTH I
+	public static final field TOTAL_POSITIONS I
+	public final fun alphabetAt (II)Ljava/util/Set;
+	public final fun alphabetAt (Lcom/airline/mrz/core/model/Position;)Ljava/util/Set;
+	public final fun getALL_SPANS ()Ljava/util/List;
+	public final fun getCHECKS ()Ljava/util/List;
+	public final fun getCOMPOSITE_CHECK ()Lcom/airline/mrz/core/model/Span;
+	public final fun getCOMPOSITE_COVERAGE ()Ljava/util/List;
+	public final fun getDATE_OF_BIRTH ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDATE_OF_BIRTH_CHECK ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDATE_OF_EXPIRY ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDATE_OF_EXPIRY_CHECK ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDOCUMENT_NUMBER ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDOCUMENT_NUMBER_CHECK ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDOCUMENT_SUBTYPE ()Lcom/airline/mrz/core/model/Span;
+	public final fun getDOCUMENT_TYPE ()Lcom/airline/mrz/core/model/Span;
+	public final fun getFIELD_SPANS ()Ljava/util/Map;
+	public final fun getISSUING_STATE ()Lcom/airline/mrz/core/model/Span;
+	public final fun getNAMES ()Lcom/airline/mrz/core/model/Span;
+	public final fun getNATIONALITY ()Lcom/airline/mrz/core/model/Span;
+	public final fun getOPTIONAL_DATA ()Lcom/airline/mrz/core/model/Span;
+	public final fun getOPTIONAL_DATA_CHECK ()Lcom/airline/mrz/core/model/Span;
+	public final fun getSEX ()Lcom/airline/mrz/core/model/Span;
+}
+
+public final class com/airline/mrz/core/model/Td3Layout$CheckSpec {
+	public fun <init> (Lcom/airline/mrz/core/model/CheckDigitKind;Ljava/util/List;Lcom/airline/mrz/core/model/Span;)V
+	public final fun component1 ()Lcom/airline/mrz/core/model/CheckDigitKind;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Lcom/airline/mrz/core/model/Span;
+	public final fun copy (Lcom/airline/mrz/core/model/CheckDigitKind;Ljava/util/List;Lcom/airline/mrz/core/model/Span;)Lcom/airline/mrz/core/model/Td3Layout$CheckSpec;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/model/Td3Layout$CheckSpec;Lcom/airline/mrz/core/model/CheckDigitKind;Ljava/util/List;Lcom/airline/mrz/core/model/Span;ILjava/lang/Object;)Lcom/airline/mrz/core/model/Td3Layout$CheckSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCheck ()Lcom/airline/mrz/core/model/Span;
+	public final fun getData ()Ljava/util/List;
+	public final fun getKind ()Lcom/airline/mrz/core/model/CheckDigitKind;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/parse/CheckDigit {
+	public static final field INSTANCE Lcom/airline/mrz/core/parse/CheckDigit;
+	public final fun compute (Ljava/lang/CharSequence;)I
+	public final fun verify (Ljava/lang/CharSequence;CZ)Z
+	public static synthetic fun verify$default (Lcom/airline/mrz/core/parse/CheckDigit;Ljava/lang/CharSequence;CZILjava/lang/Object;)Z
+}
+
+public final class com/airline/mrz/core/parse/DateParser {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun parseDateOfBirth (Ljava/lang/String;)Lcom/airline/mrz/core/parse/DateParser$Result;
+	public final fun parseDateOfExpiry (Ljava/lang/String;I)Lcom/airline/mrz/core/parse/DateParser$Result;
+	public static synthetic fun parseDateOfExpiry$default (Lcom/airline/mrz/core/parse/DateParser;Ljava/lang/String;IILjava/lang/Object;)Lcom/airline/mrz/core/parse/DateParser$Result;
+}
+
+public abstract interface class com/airline/mrz/core/parse/DateParser$Result {
+}
+
+public final class com/airline/mrz/core/parse/DateParser$Result$Date : com/airline/mrz/core/parse/DateParser$Result {
+	public fun <init> (Ljava/time/LocalDate;)V
+	public final fun component1 ()Ljava/time/LocalDate;
+	public final fun copy (Ljava/time/LocalDate;)Lcom/airline/mrz/core/parse/DateParser$Result$Date;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/parse/DateParser$Result$Date;Ljava/time/LocalDate;ILjava/lang/Object;)Lcom/airline/mrz/core/parse/DateParser$Result$Date;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/time/LocalDate;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/parse/DateParser$Result$Invalid : com/airline/mrz/core/parse/DateParser$Result {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/airline/mrz/core/parse/DateParser$Result$Invalid;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/parse/DateParser$Result$Invalid;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/core/parse/DateParser$Result$Invalid;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/parse/DateParser$Result$Unknown : com/airline/mrz/core/parse/DateParser$Result {
+	public static final field INSTANCE Lcom/airline/mrz/core/parse/DateParser$Result$Unknown;
+}
+
+public final class com/airline/mrz/core/parse/NameParser {
+	public static final field INSTANCE Lcom/airline/mrz/core/parse/NameParser;
+	public final fun parse (Ljava/lang/String;)Lcom/airline/mrz/core/parse/NameParser$Names;
+}
+
+public final class com/airline/mrz/core/parse/NameParser$Names {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Z)Lcom/airline/mrz/core/parse/NameParser$Names;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/parse/NameParser$Names;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Lcom/airline/mrz/core/parse/NameParser$Names;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPrimary ()Ljava/lang/String;
+	public final fun getSecondary ()Ljava/lang/String;
+	public final fun getTruncated ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/parse/Td3Parser {
+	public fun <init> ()V
+	public fun <init> (Lcom/airline/mrz/core/parse/DateParser;)V
+	public synthetic fun <init> (Lcom/airline/mrz/core/parse/DateParser;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun parse (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lcom/airline/mrz/core/parse/Td3Parser$Result;
+	public static synthetic fun parse$default (Lcom/airline/mrz/core/parse/Td3Parser;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lcom/airline/mrz/core/parse/Td3Parser$Result;
+	public final fun verifyChecks (Ljava/util/List;)Ljava/util/Map;
+}
+
+public abstract interface class com/airline/mrz/core/parse/Td3Parser$Result {
+}
+
+public final class com/airline/mrz/core/parse/Td3Parser$Result$Parsed : com/airline/mrz/core/parse/Td3Parser$Result {
+	public fun <init> (Lcom/airline/mrz/core/model/PassportData;Ljava/util/Map;)V
+	public final fun component1 ()Lcom/airline/mrz/core/model/PassportData;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun copy (Lcom/airline/mrz/core/model/PassportData;Ljava/util/Map;)Lcom/airline/mrz/core/parse/Td3Parser$Result$Parsed;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/parse/Td3Parser$Result$Parsed;Lcom/airline/mrz/core/model/PassportData;Ljava/util/Map;ILjava/lang/Object;)Lcom/airline/mrz/core/parse/Td3Parser$Result$Parsed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllChecksPass ()Z
+	public final fun getChecks ()Ljava/util/Map;
+	public final fun getData ()Lcom/airline/mrz/core/model/PassportData;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/parse/Td3Parser$Result$Structural : com/airline/mrz/core/parse/Td3Parser$Result {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/airline/mrz/core/parse/Td3Parser$Result$Structural;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/parse/Td3Parser$Result$Structural;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/core/parse/Td3Parser$Result$Structural;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/recognize/CharDistribution {
+	public static final field Companion Lcom/airline/mrz/core/recognize/CharDistribution$Companion;
+	public synthetic fun <init> ([FLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun get (I)F
+	public final fun getArgmax ()I
+	public final fun getArgmaxChar ()C
+	public final fun getMargin ()F
+	public final fun probabilityOf (C)F
+	public final fun restrictedTo (Ljava/util/Set;)Lcom/airline/mrz/core/recognize/CharDistribution;
+	public final fun toFloatArray ()[F
+	public fun toString ()Ljava/lang/String;
+	public final fun topTwo ()Lkotlin/Pair;
+}
+
+public final class com/airline/mrz/core/recognize/CharDistribution$Companion {
+	public final fun combine (Ljava/util/List;)Lcom/airline/mrz/core/recognize/CharDistribution;
+	public final fun of ([F)Lcom/airline/mrz/core/recognize/CharDistribution;
+	public final fun oneHot (CF)Lcom/airline/mrz/core/recognize/CharDistribution;
+	public static synthetic fun oneHot$default (Lcom/airline/mrz/core/recognize/CharDistribution$Companion;CFILjava/lang/Object;)Lcom/airline/mrz/core/recognize/CharDistribution;
+	public final fun uniform ()Lcom/airline/mrz/core/recognize/CharDistribution;
+}
+
+public final class com/airline/mrz/core/recognize/FieldAwareCorrector {
+	public fun <init> ()V
+	public fun <init> (F)V
+	public synthetic fun <init> (FILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun correct (Ljava/util/List;Ljava/util/List;)Lcom/airline/mrz/core/recognize/FieldAwareCorrector$Output;
+}
+
+public final class com/airline/mrz/core/recognize/FieldAwareCorrector$Output {
+	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/Map;
+	public final fun component5 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/util/List;)Lcom/airline/mrz/core/recognize/FieldAwareCorrector$Output;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/recognize/FieldAwareCorrector$Output;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/Map;Ljava/util/List;ILjava/lang/Object;)Lcom/airline/mrz/core/recognize/FieldAwareCorrector$Output;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun fieldConfidence ()Ljava/util/Map;
+	public final fun getChecks ()Ljava/util/Map;
+	public final fun getCorrectedLines ()Ljava/util/List;
+	public final fun getCorrections ()Ljava/util/List;
+	public final fun getRawLines ()Ljava/util/List;
+	public final fun getRestricted ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/recognize/FieldAwareCorrectorKt {
+	public static final fun field (Lcom/airline/mrz/core/model/Position;)Lcom/airline/mrz/core/model/Field;
+}
+
+public final class com/airline/mrz/core/recognize/FrameHypothesis {
+	public static final field Companion Lcom/airline/mrz/core/recognize/FrameHypothesis$Companion;
+	public fun <init> (Lcom/airline/mrz/core/recognize/LineHypothesis;Lcom/airline/mrz/core/recognize/LineHypothesis;)V
+	public final fun getFrameWeight ()F
+	public final fun getLine1 ()Lcom/airline/mrz/core/recognize/LineHypothesis;
+	public final fun getLine2 ()Lcom/airline/mrz/core/recognize/LineHypothesis;
+	public final fun getLines ()Ljava/util/List;
+}
+
+public final class com/airline/mrz/core/recognize/FrameHypothesis$Companion {
+	public final fun fromText (Ljava/lang/String;Ljava/lang/String;FF)Lcom/airline/mrz/core/recognize/FrameHypothesis;
+	public static synthetic fun fromText$default (Lcom/airline/mrz/core/recognize/FrameHypothesis$Companion;Ljava/lang/String;Ljava/lang/String;FFILjava/lang/Object;)Lcom/airline/mrz/core/recognize/FrameHypothesis;
+}
+
+public final class com/airline/mrz/core/recognize/LineHypothesis {
+	public static final field Companion Lcom/airline/mrz/core/recognize/LineHypothesis$Companion;
+	public fun <init> (Ljava/util/List;F[F)V
+	public synthetic fun <init> (Ljava/util/List;F[FILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCellWeights ()[F
+	public final fun getCells ()Ljava/util/List;
+	public final fun getFrameWeight ()F
+	public final fun getRawText ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/recognize/LineHypothesis$Companion {
+	public final fun fromText (Ljava/lang/String;FF)Lcom/airline/mrz/core/recognize/LineHypothesis;
+	public static synthetic fun fromText$default (Lcom/airline/mrz/core/recognize/LineHypothesis$Companion;Ljava/lang/String;FFILjava/lang/Object;)Lcom/airline/mrz/core/recognize/LineHypothesis;
+}
+
+public final class com/airline/mrz/core/recognize/StructuralFilter {
+	public static final field INSTANCE Lcom/airline/mrz/core/recognize/StructuralFilter;
+	public static final field MAX_OUT_OF_ALPHABET_FRACTION F
+	public final fun check (Lcom/airline/mrz/core/recognize/FrameHypothesis;)Lcom/airline/mrz/core/recognize/StructuralFilter$Verdict;
+}
+
+public final class com/airline/mrz/core/recognize/StructuralFilter$Verdict {
+	public fun <init> (ZLjava/lang/String;)V
+	public synthetic fun <init> (ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (ZLjava/lang/String;)Lcom/airline/mrz/core/recognize/StructuralFilter$Verdict;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/recognize/StructuralFilter$Verdict;ZLjava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/core/recognize/StructuralFilter$Verdict;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccepted ()Z
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/result/Correction {
+	public fun <init> (Lcom/airline/mrz/core/model/Position;CCFLcom/airline/mrz/core/model/CheckDigitKind;)V
+	public final fun component1 ()Lcom/airline/mrz/core/model/Position;
+	public final fun component2 ()C
+	public final fun component3 ()C
+	public final fun component4 ()F
+	public final fun component5 ()Lcom/airline/mrz/core/model/CheckDigitKind;
+	public final fun copy (Lcom/airline/mrz/core/model/Position;CCFLcom/airline/mrz/core/model/CheckDigitKind;)Lcom/airline/mrz/core/result/Correction;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/Correction;Lcom/airline/mrz/core/model/Position;CCFLcom/airline/mrz/core/model/CheckDigitKind;ILjava/lang/Object;)Lcom/airline/mrz/core/result/Correction;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrom ()C
+	public final fun getMotivatedBy ()Lcom/airline/mrz/core/model/CheckDigitKind;
+	public final fun getPosition ()Lcom/airline/mrz/core/model/Position;
+	public final fun getProbability ()F
+	public final fun getTo ()C
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/result/FailureReason : java/lang/Enum {
+	public static final field CANCELLED Lcom/airline/mrz/core/result/FailureReason;
+	public static final field ENGINE_ERROR Lcom/airline/mrz/core/result/FailureReason;
+	public static final field TIMEOUT Lcom/airline/mrz/core/result/FailureReason;
+	public static final field VIZ_MISMATCH Lcom/airline/mrz/core/result/FailureReason;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/airline/mrz/core/result/FailureReason;
+	public static fun values ()[Lcom/airline/mrz/core/result/FailureReason;
+}
+
+public final class com/airline/mrz/core/result/MrzRead {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Lcom/airline/mrz/core/result/VizCrossCheck;IJF)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()F
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/util/Map;
+	public final fun component7 ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public final fun component8 ()I
+	public final fun component9 ()J
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Lcom/airline/mrz/core/result/VizCrossCheck;IJF)Lcom/airline/mrz/core/result/MrzRead;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/MrzRead;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Lcom/airline/mrz/core/result/VizCrossCheck;IJFILjava/lang/Object;)Lcom/airline/mrz/core/result/MrzRead;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllChecksPass ()Z
+	public final fun getChecks ()Ljava/util/Map;
+	public final fun getCorrectedLine1 ()Ljava/lang/String;
+	public final fun getCorrectedLine2 ()Ljava/lang/String;
+	public final fun getCorrections ()Ljava/util/List;
+	public final fun getDurationMs ()J
+	public final fun getFramesVoted ()I
+	public final fun getMinMargin ()F
+	public final fun getRawLine1 ()Ljava/lang/String;
+	public final fun getRawLine2 ()Ljava/lang/String;
+	public final fun getVizCrossCheck ()Lcom/airline/mrz/core/result/VizCrossCheck;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/airline/mrz/core/result/MrzReadOutcome {
+}
+
+public final class com/airline/mrz/core/result/MrzReadOutcome$Failed : com/airline/mrz/core/result/MrzReadOutcome {
+	public fun <init> (Lcom/airline/mrz/core/result/FailureReason;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/airline/mrz/core/result/FailureReason;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/airline/mrz/core/result/FailureReason;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/airline/mrz/core/result/FailureReason;Ljava/lang/String;)Lcom/airline/mrz/core/result/MrzReadOutcome$Failed;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/MrzReadOutcome$Failed;Lcom/airline/mrz/core/result/FailureReason;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/core/result/MrzReadOutcome$Failed;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetail ()Ljava/lang/String;
+	public final fun getReason ()Lcom/airline/mrz/core/result/FailureReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/result/MrzReadOutcome$Unverified : com/airline/mrz/core/result/MrzReadOutcome {
+	public fun <init> (Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;Lcom/airline/mrz/core/result/FailureReason;)V
+	public final fun component1 ()Lcom/airline/mrz/core/model/PassportData;
+	public final fun component2 ()Lcom/airline/mrz/core/result/MrzRead;
+	public final fun component3 ()Lcom/airline/mrz/core/result/FailureReason;
+	public final fun copy (Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;Lcom/airline/mrz/core/result/FailureReason;)Lcom/airline/mrz/core/result/MrzReadOutcome$Unverified;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/MrzReadOutcome$Unverified;Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;Lcom/airline/mrz/core/result/FailureReason;ILjava/lang/Object;)Lcom/airline/mrz/core/result/MrzReadOutcome$Unverified;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPassport ()Lcom/airline/mrz/core/model/PassportData;
+	public final fun getRead ()Lcom/airline/mrz/core/result/MrzRead;
+	public final fun getReason ()Lcom/airline/mrz/core/result/FailureReason;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/result/MrzReadOutcome$Verified : com/airline/mrz/core/result/MrzReadOutcome {
+	public fun <init> (Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;)V
+	public final fun component1 ()Lcom/airline/mrz/core/model/PassportData;
+	public final fun component2 ()Lcom/airline/mrz/core/result/MrzRead;
+	public final fun copy (Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;)Lcom/airline/mrz/core/result/MrzReadOutcome$Verified;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/MrzReadOutcome$Verified;Lcom/airline/mrz/core/model/PassportData;Lcom/airline/mrz/core/result/MrzRead;ILjava/lang/Object;)Lcom/airline/mrz/core/result/MrzReadOutcome$Verified;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPassport ()Lcom/airline/mrz/core/model/PassportData;
+	public final fun getRead ()Lcom/airline/mrz/core/result/MrzRead;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/airline/mrz/core/result/VizCrossCheck {
+}
+
+public final class com/airline/mrz/core/result/VizCrossCheck$Agrees : com/airline/mrz/core/result/VizCrossCheck {
+	public static final field INSTANCE Lcom/airline/mrz/core/result/VizCrossCheck$Agrees;
+}
+
+public final class com/airline/mrz/core/result/VizCrossCheck$Disagrees : com/airline/mrz/core/result/VizCrossCheck {
+	public fun <init> (Ljava/util/Set;)V
+	public final fun component1 ()Ljava/util/Set;
+	public final fun copy (Ljava/util/Set;)Lcom/airline/mrz/core/result/VizCrossCheck$Disagrees;
+	public static synthetic fun copy$default (Lcom/airline/mrz/core/result/VizCrossCheck$Disagrees;Ljava/util/Set;ILjava/lang/Object;)Lcom/airline/mrz/core/result/VizCrossCheck$Disagrees;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFields ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/core/result/VizCrossCheck$NotRead : com/airline/mrz/core/result/VizCrossCheck {
+	public static final field INSTANCE Lcom/airline/mrz/core/result/VizCrossCheck$NotRead;
+}
+

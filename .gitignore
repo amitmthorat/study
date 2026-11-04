@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+local.properties
+
+# OS
+.DS_Store
+
+# Models and corpora are never committed; manifests only
+tools/corpus/**/*.png
+tools/corpus/**/*.jpg
+tools/corpus/**/*.yuv
+tools/corpus/**/*.mp4
+tools/training/runs/
+*.tflite
+!mrz-engine-tflite/src/main/assets/models.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
