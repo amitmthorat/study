@@ -216,7 +216,7 @@ public final class com/airline/mrz/core/model/MrzAlphabet {
 	public final fun isValid (C)Z
 }
 
-public final class com/airline/mrz/core/model/PassportData {
+public final class com/airline/mrz/core/model/PassportData : java/io/Serializable {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;Ljava/time/LocalDate;Lcom/airline/mrz/core/model/Sex;Ljava/time/LocalDate;Ljava/lang/String;Ljava/util/Map;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/time/LocalDate;
@@ -252,7 +252,7 @@ public final class com/airline/mrz/core/model/PassportData {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/airline/mrz/core/model/Position {
+public final class com/airline/mrz/core/model/Position : java/io/Serializable {
 	public fun <init> (II)V
 	public final fun component1 ()I
 	public final fun component2 ()I
@@ -542,7 +542,7 @@ public final class com/airline/mrz/core/recognize/StructuralFilter$Verdict {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/airline/mrz/core/result/Correction {
+public final class com/airline/mrz/core/result/Correction : java/io/Serializable {
 	public fun <init> (Lcom/airline/mrz/core/model/Position;CCFLcom/airline/mrz/core/model/CheckDigitKind;)V
 	public final fun component1 ()Lcom/airline/mrz/core/model/Position;
 	public final fun component2 ()C
@@ -571,7 +571,7 @@ public final class com/airline/mrz/core/result/FailureReason : java/lang/Enum {
 	public static fun values ()[Lcom/airline/mrz/core/result/FailureReason;
 }
 
-public final class com/airline/mrz/core/result/MrzRead {
+public final class com/airline/mrz/core/result/MrzRead : java/io/Serializable {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Lcom/airline/mrz/core/result/VizCrossCheck;IJF)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()F
@@ -646,7 +646,7 @@ public final class com/airline/mrz/core/result/MrzReadOutcome$Verified : com/air
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class com/airline/mrz/core/result/VizCrossCheck {
+public abstract interface class com/airline/mrz/core/result/VizCrossCheck : java/io/Serializable {
 }
 
 public final class com/airline/mrz/core/result/VizCrossCheck$Agrees : com/airline/mrz/core/result/VizCrossCheck {

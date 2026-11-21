@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Integrators override any of these by defining the same name in their app. -->
+    <string name="mrz_title">Scan passport</string>
+    <string name="mrz_instruction">Place the photo page inside the frame</string>
+    <string name="mrz_hint_no_mrz">Show the passport photo page</string>
+    <string name="mrz_hint_hold_still">Hold still</string>
+    <string name="mrz_hint_avoid_glare">Tilt slightly to avoid reflections</string>
+    <string name="mrz_hint_move_closer">Move closer</string>
+    <string name="mrz_hint_fit_whole_passport">Fit the whole passport in the frame</string>
+    <string name="mrz_hint_hold_flat">Hold the phone flat</string>
+    <string name="mrz_hint_hold_parallel">Hold the phone parallel to the page</string>
+    <string name="mrz_hint_flatten_page">Flatten the page</string>
+    <string name="mrz_hint_more_light">Find better light</string>
+    <string name="mrz_reading">Reading…</string>
+    <string name="mrz_verifying">Verifying…</string>
+    <string name="mrz_cancel">Cancel</string>
+    <string name="mrz_camera_permission_rationale">The camera is needed to read the passport.</string>
+    <string name="mrz_camera_permission_denied">Camera permission was denied.</string>
+</resources>

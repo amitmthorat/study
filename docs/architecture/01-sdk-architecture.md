@@ -487,3 +487,26 @@ in the sample app, but the SDK does not depend on any DI framework).
 4. `mrz-engine-tflite` detector, then recognizer, measured against the baseline.
 5. VIZ cross-check.
 6. Device lab, `DeviceQuirks`, benchmark gates, licensing, release pipeline.
+
+---
+
+## 15. Implementation notes (deviations from the plan above)
+
+- **`mrz-engine-api` is a pure JVM module**, not an Android library. Nothing in it
+  needs Android, and keeping it on the JVM lets the rectifier, quality gate and the
+  whole per-frame pipeline run under unit tests with recorded frames.
+- **The per-frame orchestration lives in `mrz-engine-api/FramePipeline`**, not in
+  `mrz-sdk/internal/Pipeline`. `mrz-sdk/ScanSession` is the Android wrapper that adds
+  the camera, focus control, torch, coroutines and the `ScanState` flow.
+- **The heuristic band detector** (`HeuristicMrzDetector`, edge-density profiles) backs
+  the ML Kit development engine and is the guidance-only fallback; it is not used for
+  production recognition.
+- **License signatures use ECDSA P-256 over SHA-256**, not Ed25519: Ed25519 is not in
+  `java.security` on all supported Android versions and pulling in Bouncy Castle for
+  one check is not worth the size.
+- **Results cross Activity boundaries as `java.io.Serializable`** (the core model
+  classes implement it), which keeps `mrz-core` free of Android `Parcelable`.
+- **The ML Kit engine is a `debugImplementation` of `mrz-sdk`** and is loaded by
+  reflection, so release builds of the SDK carry no ML Kit dependency.
+- **Android modules are included in the Gradle build only when an SDK is present**, so
+  the JVM modules build and test on any machine and in a CI job without the SDK.

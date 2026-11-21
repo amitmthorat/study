@@ -1,5 +1,6 @@
 package com.airline.mrz.core.model
 
+import java.io.Serializable
 import java.time.LocalDate
 
 /**
@@ -31,8 +32,12 @@ public data class PassportData(
     val optionalData: String,
     /** Per-field confidence in `0..1`, the minimum top-two margin over the field's cells. */
     val fieldConfidence: Map<Field, Float>,
-) {
+) : Serializable {
     val issuingStateCanonical: String get() = CountryCodes.canonical(issuingState)
     val nationalityCanonical: String get() = CountryCodes.canonical(nationality)
     val documentSubtype: Char get() = documentCode[1]
+
+    private companion object {
+        private const val serialVersionUID: Long = 1L
+    }
 }

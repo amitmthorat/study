@@ -50,7 +50,7 @@ public data class Span(
 }
 
 /** A single character cell on the MRZ. */
-public data class Position(val line: Int, val index: Int) {
+public data class Position(val line: Int, val index: Int) : java.io.Serializable {
     /** Flat index over both lines, `0..87`. */
     val flat: Int get() = line * Td3Layout.LINE_LENGTH + index
 }

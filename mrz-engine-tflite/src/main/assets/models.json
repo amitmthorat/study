@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "comment": "Model manifest. Files listed here must ship next to this manifest in assets/. Hashes are verified at load; a mismatch is a hard init failure. Model files are not committed to git (see tools/training/README.md for how they are produced).",
+  "models": [
+    {
+      "name": "mrz_detector",
+      "file": "mrz_detector_v1.tflite",
+      "version": "1",
+      "sha256": "TBD",
+      "input": { "shape": [1, 320, 320, 1], "dtype": "float32", "normalise": "0..1" },
+      "output": { "shape": [1, 9], "layout": "confidence, x0,y0, x1,y1, x2,y2, x3,y3 (normalised, clockwise from top-left)" }
+    },
+    {
+      "name": "mrz_recognizer",
+      "file": "mrz_recognizer_v1.tflite",
+      "version": "1",
+      "sha256": "TBD",
+      "temperature": 1.0,
+      "input": { "shape": [1, 32, 880, 1], "dtype": "float32", "normalise": "0..1" },
+      "output": { "shape": [1, 44, 37], "layout": "logits per cell over the MrzAlphabet order" }
+    },
+    {
+      "name": "viz_line_detector",
+      "file": "viz_line_detector_v1.tflite",
+      "version": "1",
+      "sha256": "TBD",
+      "input": { "shape": [1, 256, 512, 1], "dtype": "float32", "normalise": "0..1" },
+      "output": { "shape": [1, 3, 5], "layout": "per field (document number, date of birth, date of expiry): confidence, cx, cy, w, h (normalised)" }
+    }
+  ]
+}

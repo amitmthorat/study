@@ -5,6 +5,7 @@ import com.airline.mrz.core.model.CheckStatus
 import com.airline.mrz.core.model.Field
 import com.airline.mrz.core.model.PassportData
 import com.airline.mrz.core.model.Position
+import java.io.Serializable
 
 /** A single character substitution made by the corrector, kept for audit. */
 public data class Correction(
@@ -15,13 +16,19 @@ public data class Correction(
     val probability: Float,
     /** The check digit that motivated the swap. */
     val motivatedBy: CheckDigitKind,
-)
+) : Serializable
 
 /** Outcome of comparing visual-zone reads with the MRZ. */
-public sealed interface VizCrossCheck {
-    public object Agrees : VizCrossCheck
+public sealed interface VizCrossCheck : Serializable {
+    public object Agrees : VizCrossCheck {
+        private fun readResolve(): Any = Agrees
+    }
+
     public data class Disagrees(val fields: Set<Field>) : VizCrossCheck
-    public object NotRead : VizCrossCheck
+
+    public object NotRead : VizCrossCheck {
+        private fun readResolve(): Any = NotRead
+    }
 }
 
 /** Everything about how the MRZ was read, independent of what it says. */
@@ -37,7 +44,7 @@ public data class MrzRead(
     val durationMs: Long,
     /** Minimum top-two margin across all 88 cells of the integrated read. */
     val minMargin: Float,
-) {
+) : Serializable {
     val allChecksPass: Boolean get() = checks.values.all { it != CheckStatus.FAIL }
 }
 

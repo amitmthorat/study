@@ -18,6 +18,122 @@ public final class com/airline/mrz/engine/Frame {
 	public final fun getTimestampNanos ()J
 }
 
+public final class com/airline/mrz/engine/FramePipeline {
+	public fun <init> (Lcom/airline/mrz/engine/MrzEngine;Lcom/airline/mrz/engine/QualityGate;Lcom/airline/mrz/core/integrate/ReadSession;Lcom/airline/mrz/engine/FramePipeline$Config;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Lcom/airline/mrz/engine/MrzEngine;Lcom/airline/mrz/engine/QualityGate;Lcom/airline/mrz/core/integrate/ReadSession;Lcom/airline/mrz/engine/FramePipeline$Config;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun elapsedMs ()J
+	public final fun getTimings ()Lcom/airline/mrz/engine/FramePipeline$Timings;
+	public final fun process (Lcom/airline/mrz/engine/Frame;)Lcom/airline/mrz/engine/FramePipeline$Event;
+	public final fun reset ()V
+	public final fun tick ()Lcom/airline/mrz/engine/FramePipeline$Event;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Config {
+	public fun <init> ()V
+	public fun <init> (ZIFF)V
+	public synthetic fun <init> (ZIFFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()I
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun copy (ZIFF)Lcom/airline/mrz/engine/FramePipeline$Config;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/FramePipeline$Config;ZIFFILjava/lang/Object;)Lcom/airline/mrz/engine/FramePipeline$Config;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGeometryResetFraction ()F
+	public final fun getStrictModeLatencyRatio ()F
+	public final fun getVizCrossCheck ()Z
+	public final fun getVizEveryFrames ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/airline/mrz/engine/FramePipeline$Event {
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Event$Done : com/airline/mrz/engine/FramePipeline$Event {
+	public fun <init> (Lcom/airline/mrz/core/result/MrzReadOutcome;)V
+	public final fun component1 ()Lcom/airline/mrz/core/result/MrzReadOutcome;
+	public final fun copy (Lcom/airline/mrz/core/result/MrzReadOutcome;)Lcom/airline/mrz/engine/FramePipeline$Event$Done;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/FramePipeline$Event$Done;Lcom/airline/mrz/core/result/MrzReadOutcome;ILjava/lang/Object;)Lcom/airline/mrz/engine/FramePipeline$Event$Done;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOutcome ()Lcom/airline/mrz/core/result/MrzReadOutcome;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Event$Dropped : com/airline/mrz/engine/FramePipeline$Event {
+	public fun <init> (Lcom/airline/mrz/engine/Quad;Ljava/lang/String;)V
+	public final fun component1 ()Lcom/airline/mrz/engine/Quad;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/airline/mrz/engine/Quad;Ljava/lang/String;)Lcom/airline/mrz/engine/FramePipeline$Event$Dropped;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/FramePipeline$Event$Dropped;Lcom/airline/mrz/engine/Quad;Ljava/lang/String;ILjava/lang/Object;)Lcom/airline/mrz/engine/FramePipeline$Event$Dropped;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBand ()Lcom/airline/mrz/engine/Quad;
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Event$NoMrz : com/airline/mrz/engine/FramePipeline$Event {
+	public static final field INSTANCE Lcom/airline/mrz/engine/FramePipeline$Event$NoMrz;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Event$Rejected : com/airline/mrz/engine/FramePipeline$Event {
+	public fun <init> (Lcom/airline/mrz/engine/Hint;Lcom/airline/mrz/engine/Quad;)V
+	public final fun component1 ()Lcom/airline/mrz/engine/Hint;
+	public final fun component2 ()Lcom/airline/mrz/engine/Quad;
+	public final fun copy (Lcom/airline/mrz/engine/Hint;Lcom/airline/mrz/engine/Quad;)Lcom/airline/mrz/engine/FramePipeline$Event$Rejected;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/FramePipeline$Event$Rejected;Lcom/airline/mrz/engine/Hint;Lcom/airline/mrz/engine/Quad;ILjava/lang/Object;)Lcom/airline/mrz/engine/FramePipeline$Event$Rejected;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBand ()Lcom/airline/mrz/engine/Quad;
+	public final fun getHint ()Lcom/airline/mrz/engine/Hint;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Event$Voted : com/airline/mrz/engine/FramePipeline$Event {
+	public fun <init> (Lcom/airline/mrz/engine/Quad;Lcom/airline/mrz/core/integrate/StoppingRule$Progress;)V
+	public final fun component1 ()Lcom/airline/mrz/engine/Quad;
+	public final fun component2 ()Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public final fun copy (Lcom/airline/mrz/engine/Quad;Lcom/airline/mrz/core/integrate/StoppingRule$Progress;)Lcom/airline/mrz/engine/FramePipeline$Event$Voted;
+	public static synthetic fun copy$default (Lcom/airline/mrz/engine/FramePipeline$Event$Voted;Lcom/airline/mrz/engine/Quad;Lcom/airline/mrz/core/integrate/StoppingRule$Progress;ILjava/lang/Object;)Lcom/airline/mrz/engine/FramePipeline$Event$Voted;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBand ()Lcom/airline/mrz/engine/Quad;
+	public final fun getProgress ()Lcom/airline/mrz/core/integrate/StoppingRule$Progress;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/airline/mrz/engine/FramePipeline$Timings {
+	public fun <init> ()V
+	public final fun getDetectNanos ()J
+	public final fun getFramesRejected ()I
+	public final fun getFramesSeen ()I
+	public final fun getFramesVoted ()I
+	public final fun getHintCounts ()Ljava/util/Map;
+	public final fun getQualityNanos ()J
+	public final fun getRecognizeNanos ()J
+	public final fun getRectifyNanos ()J
+	public final fun getVizNanos ()J
+	public final fun setDetectNanos (J)V
+	public final fun setFramesRejected (I)V
+	public final fun setFramesSeen (I)V
+	public final fun setFramesVoted (I)V
+	public final fun setQualityNanos (J)V
+	public final fun setRecognizeNanos (J)V
+	public final fun setRectifyNanos (J)V
+	public final fun setVizNanos (J)V
+}
+
+public final class com/airline/mrz/engine/HeuristicMrzDetector : com/airline/mrz/engine/MrzDetector {
+	public fun <init> ()V
+	public fun <init> (III)V
+	public synthetic fun <init> (IIIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun close ()V
+	public fun detect (Lcom/airline/mrz/engine/image/LumaImage;)Lcom/airline/mrz/engine/Detection;
+	public fun getInputLongSide ()I
+}
+
 public final class com/airline/mrz/engine/Hint : java/lang/Enum {
 	public static final field AVOID_GLARE Lcom/airline/mrz/engine/Hint;
 	public static final field FIT_WHOLE_PASSPORT Lcom/airline/mrz/engine/Hint;
@@ -283,5 +399,10 @@ public final class com/airline/mrz/engine/image/Rectifier$RectifiedLines {
 	public final fun getBand ()Lcom/airline/mrz/engine/image/LumaImage;
 	public final fun getLine1 ()Lcom/airline/mrz/engine/image/LumaImage;
 	public final fun getLine2 ()Lcom/airline/mrz/engine/image/LumaImage;
+}
+
+public final class com/airline/mrz/engine/image/Rotate {
+	public static final field INSTANCE Lcom/airline/mrz/engine/image/Rotate;
+	public final fun clockwise (Lcom/airline/mrz/engine/image/LumaImage;I)Lcom/airline/mrz/engine/image/LumaImage;
 }
 
